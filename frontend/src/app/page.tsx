@@ -65,10 +65,17 @@ export default function Home() {
             const requestOptions = {
               method: 'PUT',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ content: e.target.value }),
+              body: JSON.stringify({
+                content: e.target.value,
+                clientId: clientId,
+              }),
             };
             // Alert server:
-            await fetch('http://localhost:3002/update', requestOptions);
+            try {
+              await fetch('http://localhost:3002/update', requestOptions);
+            } catch (e) {
+              // console.log(e);
+            }
           }}
         ></TextField>
       </Box>
